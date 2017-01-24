@@ -1,0 +1,10 @@
+name: Bityard
+version: 0.0.1
+author: epolixa
+main: com.epolixa.bityard.Bityard
+
+website: epolixa.com
+commands:
+    dummy:
+        description: dummy :p
+        usage: /dummy
