@@ -2,7 +2,7 @@ name: Bityard
 version: 0.0.1
 author: epolixa
 main: com.epolixa.bityard.Bityard
-
+depend: [ProtocolLib]
 website: epolixa.com
 commands:
     dummy:

@@ -46,7 +46,7 @@ public final class AFK
         for (Player p : bityard.getServer().getOnlinePlayers())
             setIdleTime(p.getUniqueId(), 0);
 
-        bityard.getLogger().info("[AFK] Enabled");
+        sendLog("Enabled");
     }
 
 
@@ -57,8 +57,10 @@ public final class AFK
         for (Player p : bityard.getServer().getOnlinePlayers())
             p.setPlayerListName(p.getName());
 
-        bityard.getLogger().info("[AFK] Disabled");
+        sendLog("Disabled");
     }
+
+    public void sendLog(String msg) {bityard.sendLog("[AFK] " + msg);}
 
     public Bityard getPlugin() {return bityard;}
 
