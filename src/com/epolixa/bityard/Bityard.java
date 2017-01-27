@@ -38,11 +38,12 @@ public class Bityard extends JavaPlugin
                         if (msg.contains("{\"color\":\"blue\",\"text\":\"δ\"}")) // is message from discordmc, prefix from config
                         {
                             String nick = msg.substring(msg.indexOf("\\u003c") + 6, msg.indexOf("\\u003e"));
-                            for (Player p : getServer().getOnlinePlayers())
+
+                            for (String playerName : getServer().getScoreboardManager().getMainScoreboard().getEntries())
                             {
-                                if (nick.equals(p.getName())) // found a player name! attempt to apply scoreboard color
+                                if (nick.equals(playerName)) // found a player name! attempt to apply scoreboard color
                                 {
-                                    nick = "\"},{\"color\":\"" + p.getScoreboard().getEntryTeam(p.getName()).getName() + "\",\"text\":\"" + nick + "\"},{\"color\":\"white\",\"text\":\"";
+                                    nick = "\"},{\"color\":\"" + getServer().getScoreboardManager().getMainScoreboard().getEntryTeam(playerName).getName() + "\",\"text\":\"" + nick + "\"},{\"color\":\"white\",\"text\":\"";
                                     msg = msg.substring(0, msg.indexOf("\\u003c") + 6) + nick + msg.substring(msg.indexOf("\\u003e"), msg.length());
                                 }
                             }
