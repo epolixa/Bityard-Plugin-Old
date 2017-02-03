@@ -79,8 +79,8 @@ public final class AFK
         {
             afkStatusMap.put(player.getUniqueId(), true);
             if (!reason.equals(""))
-            {Bukkit.broadcastMessage(ChatColor.GRAY + "* " + player.getName() + " is now AFK: \"" + reason + "\"");}
-            else {Bukkit.broadcastMessage(ChatColor.GRAY + "* " + player.getName() + " is now AFK.");}
+            {Bukkit.broadcastMessage(ChatColor.YELLOW + player.getName() + " is now AFK: \"" + reason + "\"");}
+            else {Bukkit.broadcastMessage(ChatColor.YELLOW + player.getName() + " is now AFK");}
             refreshListName(player);
         }
     }
@@ -90,7 +90,7 @@ public final class AFK
         if (afkStatusMap.get(player.getUniqueId()))
         {
             afkStatusMap.put(player.getUniqueId(), false);
-            Bukkit.broadcastMessage(ChatColor.GRAY + "* " + player.getName() + " is no longer AFK.");
+            Bukkit.broadcastMessage(ChatColor.YELLOW + player.getName() + " is no longer AFK");
             refreshListName(player);
         }
     }
@@ -99,7 +99,7 @@ public final class AFK
     {
         if (afkStatusMap.get(player.getUniqueId()))
         {
-            player.setPlayerListName(ChatColor.GRAY + player.getName() + " (AFK)");
+            player.setPlayerListName(player.getScoreboard().getEntryTeam(player.getName()).getPrefix() + player.getName() + ChatColor.GRAY + " (AFK)");
         } else
         {
             player.setPlayerListName(player.getName());

@@ -62,7 +62,7 @@ public class AFKListener implements Listener
                     if (p.getName().equalsIgnoreCase(recipientName))
                     {
                         if (i < msg.length() && afk.getAFKstatus(p.getUniqueId()))
-                            event.getPlayer().sendMessage(ChatColor.GRAY + "" + ChatColor.ITALIC + recipientName + " is AFK and may not see your message.");
+                            event.getPlayer().sendMessage(ChatColor.GRAY + "" + ChatColor.ITALIC + recipientName + " is AFK and may not see your message");
                         break;
                     }
             }

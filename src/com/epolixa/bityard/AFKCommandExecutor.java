@@ -20,13 +20,13 @@ public class AFKCommandExecutor implements CommandExecutor
         {
             if (!(sender instanceof Player))
             {
-                sender.sendMessage("'/afk' can only be used by a player.");
+                sender.sendMessage("\"/afk\" can only be used by a player");
                 return false;
             }
 
             String reason = "";
             for (int i = 0; i < args.length; i++)
-                reason += (args[i] + " ");
+                reason += (args[i] + "");
             afk.goAFK((Player)sender, reason);
 
             return true;

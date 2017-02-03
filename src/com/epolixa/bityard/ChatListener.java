@@ -22,7 +22,10 @@ public class ChatListener implements Listener
     public void onPlayerChat(AsyncPlayerChatEvent e)
     {
         Player player = e.getPlayer();
-        player.setDisplayName(player.getScoreboard().getEntryTeam(player.getName()).getPrefix() + ChatColor.stripColor(player.getDisplayName()) + ChatColor.WHITE);
+        if (player != null)
+        {
+            player.setDisplayName(player.getScoreboard().getEntryTeam(player.getName()).getPrefix() + ChatColor.stripColor(player.getDisplayName()) + ChatColor.WHITE);
+        }
     }
 
     // color discord names too
