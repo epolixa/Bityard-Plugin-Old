@@ -2,7 +2,6 @@ package com.epolixa.bityard;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.block.CauldronLevelChangeEvent;
 
 public class BeaconListener implements Listener
 {
@@ -15,7 +14,7 @@ public class BeaconListener implements Listener
     }
 
     @EventHandler
-    public void onBeaconApplyEffect(CauldronLevelChangeEvent event)
+    public void onBeaconApplyEffect()
     {
 
     }

@@ -72,7 +72,7 @@ public final class Community
     {
         Score score = player.getScoreboard().getObjective("community").getScore(player.getName());
         int newScore = score.getScore() + amount;
-        newScore = Math.max(Math.min(newScore, 800), 0);
+        newScore = Math.max(Math.min(newScore, 1000), 0);
         score.setScore(newScore);
     }
 }
