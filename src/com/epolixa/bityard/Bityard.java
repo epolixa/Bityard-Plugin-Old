@@ -8,6 +8,9 @@ import com.comphenix.protocol.events.PacketAdapter;
 import com.comphenix.protocol.events.PacketContainer;
 import com.comphenix.protocol.events.PacketEvent;
 import com.comphenix.protocol.wrappers.WrappedChatComponent;
+import org.bukkit.Chunk;
+import org.bukkit.Location;
+import org.bukkit.block.BlockState;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -31,6 +34,7 @@ public class Bityard extends JavaPlugin
         // Register orphan event listeners
         PluginManager pluginManager = getServer().getPluginManager();
         pluginManager.registerEvents(new ChatListener(this), this); // chat colors
+        pluginManager.registerEvents(new BeaconListener(this), this); // beacon titles
 
         // Start child classes
         sendLog("Starting child classes");
