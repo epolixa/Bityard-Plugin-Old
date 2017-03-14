@@ -26,12 +26,10 @@ public class BeaconListener implements Listener
     {
         try
         {
-            bityard.sendLog("BeaconEffectEvent triggered by " + event.getPlayer().getDisplayName());
             if (event.getBlock().getType() == Material.BEACON)
             {
                 Player player = event.getPlayer();
                 Beacon beacon = (Beacon)event.getBlock().getState();
-                bityard.sendLog("Beacon found");
 
                 // test for signs around beacon
                 if (!player.hasPotionEffect(beacon.getPrimaryEffect().getType()))
@@ -50,8 +48,6 @@ public class BeaconListener implements Listener
 
                     if (sign != null)
                     {
-                        bityard.sendLog("Beacon has sign");
-
                         ChatColor[] colorPrefixes = {ChatColor.WHITE, ChatColor.WHITE, ChatColor.WHITE, ChatColor.WHITE};
                         Location l = loc.add(0,1,0);
                         for (int i = 0; i < 4; i++)
@@ -91,8 +87,6 @@ public class BeaconListener implements Listener
                         for (int i = 0; i < sign.getLines().length; i++)
                             stringBuilder.append(colorPrefixes[i] + sign.getLine(i));
                         String signText = stringBuilder.toString();
-
-                        bityard.sendLog("Sending title \"" + signText + "\" to " + player.getDisplayName());
                         player.sendTitle(" ", signText, 10, 70, 20);
                     }
                 }

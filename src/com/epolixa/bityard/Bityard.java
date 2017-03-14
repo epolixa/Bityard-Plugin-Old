@@ -8,10 +8,6 @@ import com.comphenix.protocol.events.PacketAdapter;
 import com.comphenix.protocol.events.PacketContainer;
 import com.comphenix.protocol.events.PacketEvent;
 import com.comphenix.protocol.wrappers.WrappedChatComponent;
-import org.bukkit.Chunk;
-import org.bukkit.Location;
-import org.bukkit.block.BlockState;
-import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -35,6 +31,8 @@ public class Bityard extends JavaPlugin
         PluginManager pluginManager = getServer().getPluginManager();
         pluginManager.registerEvents(new ChatListener(this), this); // chat colors
         pluginManager.registerEvents(new BeaconListener(this), this); // beacon titles
+        pluginManager.registerEvents(new RandomTeleportListener(this), this); // random teleport
+        pluginManager.registerEvents(new MOTDListener(this), this); // change motd from town hole
 
         // Start child classes
         sendLog("Starting child classes");
