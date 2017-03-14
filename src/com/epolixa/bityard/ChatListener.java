@@ -24,7 +24,7 @@ public class ChatListener implements Listener
         Player player = e.getPlayer();
         if (player != null)
         {
-            player.setDisplayName(player.getScoreboard().getEntryTeam(player.getName()).getPrefix() + ChatColor.stripColor(player.getDisplayName()) + ChatColor.WHITE);
+            player.setDisplayName(player.getScoreboard().getEntryTeam(player.getName()).getPrefix() + ChatColor.stripColor(player.getDisplayName()) + ChatColor.RESET);
         }
     }
 

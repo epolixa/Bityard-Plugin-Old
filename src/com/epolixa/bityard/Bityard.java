@@ -33,6 +33,7 @@ public class Bityard extends JavaPlugin
         pluginManager.registerEvents(new BeaconListener(this), this); // beacon titles
         pluginManager.registerEvents(new RandomTeleportListener(this), this); // random teleport
         pluginManager.registerEvents(new MOTDListener(this), this); // change motd from town hole
+        pluginManager.registerEvents(new ItemOwnershipListener(this), this); // item ownership
 
         // Start child classes
         sendLog("Starting child classes");
