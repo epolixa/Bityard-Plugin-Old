@@ -30,7 +30,6 @@ public class ElytraListener implements Listener
             if (event.getEntityType() == EntityType.PLAYER)
             {
                 Player player = (Player)event.getEntity();
-                player.getWorld().spawnParticle(Particle.FALLING_DUST, player.getLocation(), 8, 0.4, 0.4, 0.4, 1, new MaterialData(Material.CHORUS_FLOWER));
                 player.getWorld().playSound(player.getLocation(), Sound.ENTITY_ENDERDRAGON_FLAP, SoundCategory.PLAYERS, 0.4f, 2f);
             }
         }
@@ -49,7 +48,6 @@ public class ElytraListener implements Listener
             if (player.isGliding())
             {
                 player.setGliding(false);
-                player.getWorld().spawnParticle(Particle.FALLING_DUST, player.getLocation(), 8, 0.4, 0.4, 0.4, 1, new MaterialData(Material.CHORUS_FLOWER));
                 player.getWorld().playSound(player.getLocation(), Sound.ENTITY_ENDERDRAGON_FLAP, SoundCategory.PLAYERS, 0.4f, 1.5f);
             }
         }
