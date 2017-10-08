@@ -35,7 +35,7 @@ public class ElytraListener implements Listener
         }
         catch (Exception e)
         {
-            bityard.sendLog(e.toString());
+            bityard.log(e.toString());
         }
     }
 
@@ -53,7 +53,7 @@ public class ElytraListener implements Listener
         }
         catch (Exception e)
         {
-            bityard.sendLog(e.toString());
+            bityard.log(e.toString());
         }
     }
 }

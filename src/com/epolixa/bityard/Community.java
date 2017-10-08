@@ -55,7 +55,7 @@ public final class Community
         sendLog("Disabled");
     }
 
-    public void sendLog(String msg) {bityard.sendLog("[Community] " + msg);}
+    public void sendLog(String msg) {bityard.log("[Community] " + msg);}
 
     public Bityard getPlugin() {return bityard;}
 

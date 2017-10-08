@@ -29,28 +29,26 @@ public class EnderCrystalListener implements Listener
             Entity entity = event.getEntity();
             if
             (
-                (
-                    entity.getType() == EntityType.ZOMBIE ||
-                    entity.getType() == EntityType.HUSK ||
-                    entity.getType() == EntityType.SKELETON ||
-                    entity.getType() == EntityType.WITHER_SKELETON ||
-                    entity.getType() == EntityType.STRAY ||
-                    entity.getType() == EntityType.CREEPER ||
-                    entity.getType() == EntityType.SPIDER ||
-                    entity.getType() == EntityType.CAVE_SPIDER ||
-                    entity.getType() == EntityType.SLIME ||
-                    entity.getType() == EntityType.ENDERMAN ||
-                    entity.getType() == EntityType.WITCH ||
-                    entity.getType() == EntityType.BLAZE ||
-                    entity.getType() == EntityType.GHAST ||
-                    entity.getType() == EntityType.MAGMA_CUBE ||
-                    entity.getType() == EntityType.ZOMBIE_VILLAGER ||
-                    entity.getType() == EntityType.PIG_ZOMBIE ||
-                    entity.getType() == EntityType.VEX
-                )
+                entity.getType() == EntityType.ZOMBIE ||
+                entity.getType() == EntityType.HUSK ||
+                entity.getType() == EntityType.SKELETON ||
+                entity.getType() == EntityType.WITHER_SKELETON ||
+                entity.getType() == EntityType.STRAY ||
+                entity.getType() == EntityType.CREEPER ||
+                entity.getType() == EntityType.SPIDER ||
+                entity.getType() == EntityType.CAVE_SPIDER ||
+                entity.getType() == EntityType.SLIME ||
+                entity.getType() == EntityType.ENDERMAN ||
+                entity.getType() == EntityType.WITCH ||
+                entity.getType() == EntityType.BLAZE ||
+                entity.getType() == EntityType.GHAST ||
+                entity.getType() == EntityType.MAGMA_CUBE ||
+                entity.getType() == EntityType.ZOMBIE_VILLAGER ||
+                entity.getType() == EntityType.PIG_ZOMBIE ||
+                entity.getType() == EntityType.VEX
             )
             {
-                List<Entity> nearbyEntities = entity.getNearbyEntities(64, 64, 64);
+                List<Entity> nearbyEntities = entity.getNearbyEntities(32, 32, 32);
                 for (Entity e : nearbyEntities)
                 {
                     if (e.getType() == EntityType.ENDER_CRYSTAL)
@@ -60,7 +58,9 @@ public class EnderCrystalListener implements Listener
                         e.getWorld().spawnParticle(Particle.DRAGON_BREATH, e.getLocation().add(0, 0.4, 0), 8, 0.4, 1, 0.4, 0.01);
                         entity.getWorld().playSound(entity.getLocation(), Sound.ENTITY_EVOCATION_ILLAGER_PREPARE_SUMMON, SoundCategory.AMBIENT, 0.4f, random.nextFloat() + 1);
                         e.getWorld().playSound(e.getLocation(), Sound.ENTITY_EVOCATION_ILLAGER_PREPARE_SUMMON, SoundCategory.AMBIENT, 0.4f, random.nextFloat() + 1);
+                        bityard.log("Ender crystal at " + bityard.locationXYZ(e.getLocation()) + " blocked spawning of " + entity.getName() + " at " + bityard.locationXYZ(entity.getLocation()));
                         event.setCancelled(true);
+                        break;
                     }
                 }
             }
@@ -68,7 +68,7 @@ public class EnderCrystalListener implements Listener
         }
         catch (Exception e)
         {
-            bityard.sendLog(e.toString());
+            bityard.log(e.toString());
         }
     }
 }

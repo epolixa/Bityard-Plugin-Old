@@ -8,6 +8,7 @@ import com.comphenix.protocol.events.PacketAdapter;
 import com.comphenix.protocol.events.PacketContainer;
 import com.comphenix.protocol.events.PacketEvent;
 import com.comphenix.protocol.wrappers.WrappedChatComponent;
+import org.bukkit.Location;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -21,7 +22,7 @@ public class Bityard extends JavaPlugin
     @Override
     public void onEnable()
     {
-        sendLog("Enabling...");
+        log("Enabling...");
 
         // Add packet events
         protocolManager = ProtocolLibrary.getProtocolManager();
@@ -32,36 +33,43 @@ public class Bityard extends JavaPlugin
         pluginManager.registerEvents(new ChatListener(this), this); // chat colors
         pluginManager.registerEvents(new BeaconListener(this), this); // beacon titles
         pluginManager.registerEvents(new RandomTeleportListener(this), this); // random teleport
-        pluginManager.registerEvents(new MOTDListener(this), this); // change motd from town hole
+        pluginManager.registerEvents(new MOTDListener(this), this); // change motd from town hall
         //pluginManager.registerEvents(new ItemOwnershipListener(this), this); // item ownership
         pluginManager.registerEvents(new ElytraListener(this), this); // elytra polish
         //pluginManager.registerEvents(new InventoryListener(this), this); // inventory polish
         pluginManager.registerEvents(new EnderCrystalListener(this), this); // end crystal mob dispel
-        pluginManager.registerEvents(new ArenaListener(this), this);
+        //pluginManager.registerEvents(new ArenaListener(this), this);
 
         // Start child classes
-        sendLog("Starting child classes");
+        log("Starting child classes");
         afk = new AFK(this); afk.start(); // AFK
         community = new Community(this, afk); community.start(); // community score
 
-        sendLog("Enabled");
+        log("Enabled");
     }
 
     // Shutdown
     @Override
     public void onDisable()
     {
-        sendLog("Disabling...");
+        log("Disabling...");
 
         // Stop child classes
-        sendLog("Stopping child classes");
+        log("Stopping child classes");
         afk.stop(); // AFK
         community.stop();
 
-        sendLog("Disabled");
+        log("Disabled");
     }
 
-    public void sendLog(String msg) {getLogger().info("[Bityard] " + msg);}
+    public void log(String msg) {
+        StackTraceElement[] stackTraceElements = Thread.currentThread().getStackTrace();
+        getLogger().info("[" + stackTraceElements[2].getClassName() + "] : " + msg);
+    }
+
+    public String locationXYZ(Location loc) {
+        return loc.getBlockX() + "x, " + loc.getBlockY() + "y, " + loc.getBlockZ() + "z";
+    }
 
     public void addPacketListeners(ProtocolManager protocolManager)
     {
@@ -93,7 +101,7 @@ public class Bityard extends JavaPlugin
                             packet.getChatComponents().write(0, chat);
                         }
                     }
-                    catch (Exception e) {sendLog("Error while intercepting discordmc message: " + e.toString());}
+                    catch (Exception e) {log("Error while intercepting discordmc message: " + e.toString());}
                 }
             }
         });

@@ -26,7 +26,7 @@ public class AFKCommandExecutor implements CommandExecutor
 
             String reason = "";
             for (int i = 0; i < args.length; i++)
-                reason += (args[i] + "");
+                reason += (args[i] + (i >= reason.length() - 1 ? "" : " "));
             afk.goAFK((Player)sender, reason);
 
             return true;

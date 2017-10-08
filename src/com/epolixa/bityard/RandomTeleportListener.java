@@ -23,7 +23,7 @@ public class RandomTeleportListener implements Listener
         if (event.getItem().getType() == Material.CHORUS_FRUIT)
         {
             Player player = event.getPlayer();
-            Location spawnLocation = new Location(player.getWorld(), 472, 65, 725);
+            Location spawnLocation = new Location(player.getWorld(), -543, 82, 262);
             if (player.getLocation().distance(spawnLocation) < 2)
             {
                 double minRange = 1000;

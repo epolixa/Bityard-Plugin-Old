@@ -46,7 +46,7 @@ public final class AFK
         for (Player p : bityard.getServer().getOnlinePlayers())
             setIdleTime(p.getUniqueId(), 0);
 
-        sendLog("Enabled");
+        log("Enabled");
     }
 
 
@@ -57,10 +57,10 @@ public final class AFK
         for (Player p : bityard.getServer().getOnlinePlayers())
             p.setPlayerListName(p.getName());
 
-        sendLog("Disabled");
+        log("Disabled");
     }
 
-    public void sendLog(String msg) {bityard.sendLog("[AFK] " + msg);}
+    public void log(String msg) {bityard.log("[AFK] " + msg);}
 
     public Bityard getPlugin() {return bityard;}
 
@@ -81,7 +81,7 @@ public final class AFK
             if (!reason.equals(""))
             {Bukkit.broadcastMessage(ChatColor.YELLOW + player.getName() + " is now AFK: \"" + reason + "\"");}
             else {Bukkit.broadcastMessage(ChatColor.YELLOW + player.getName() + " is now AFK");}
-            refreshListName(player);
+            refreshListName(player, reason);
         }
     }
 
@@ -91,15 +91,21 @@ public final class AFK
         {
             afkStatusMap.put(player.getUniqueId(), false);
             Bukkit.broadcastMessage(ChatColor.YELLOW + player.getName() + " is no longer AFK");
-            refreshListName(player);
+            refreshListName(player, "");
         }
     }
 
-    public void refreshListName(Player player)
+    public void refreshListName(Player player, String reason)
     {
         if (afkStatusMap.get(player.getUniqueId()))
         {
-            player.setPlayerListName(player.getScoreboard().getEntryTeam(player.getName()).getPrefix() + player.getName() + ChatColor.GRAY + " (AFK)");
+            if (!reason.equals(""))
+            {
+                player.setPlayerListName(player.getScoreboard().getEntryTeam(player.getName()).getPrefix() + player.getName() + ChatColor.GRAY + " (AFK: " + reason + ")");
+            } else
+            {
+                player.setPlayerListName(player.getScoreboard().getEntryTeam(player.getName()).getPrefix() + player.getName() + ChatColor.GRAY + " (AFK)");
+            }
         } else
         {
             player.setPlayerListName(player.getName());
@@ -109,6 +115,6 @@ public final class AFK
     public void refreshListNames()
     {
         for (Player p : bityard.getServer().getOnlinePlayers())
-            refreshListName(p);
+            refreshListName(p, "");
     }
 }

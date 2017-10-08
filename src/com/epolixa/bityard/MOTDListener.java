@@ -1,27 +1,45 @@
 package com.epolixa.bityard;
 
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Sign;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.server.ServerListPingEvent;
 
+import java.util.Random;
+
 public class MOTDListener implements Listener
 {
     private final Bityard bityard;
+    private Location cornerA;
+    private Location cornerB;
 
     public MOTDListener(Bityard bityard)
     {
         this.bityard = bityard;
+        this.cornerA = new Location(bityard.getServer().getWorld("world"), -542, 81, 252);
+        this.cornerB = new Location(bityard.getServer().getWorld("world"), -540, 82, 252);
     }
+
 
     @EventHandler
     public void onMOTDUpdate(ServerListPingEvent event)
     {
         Sign sign = null;
-        if (bityard.getServer().getWorld("world").getBlockAt(543, 56, 837).getType() == Material.WALL_SIGN)
+        Random random = new Random();
+
+        // pick random sign location between corners
+        Location signLoc = new Location(
+            bityard.getServer().getWorld("world"),
+            cornerA.getBlockX() == cornerB.getBlockX() ? cornerA.getBlockX() : cornerA.getBlockX() + random.nextInt(cornerB.getBlockX() - cornerA.getBlockX() + 1),
+            cornerA.getBlockY() == cornerB.getBlockY() ? cornerA.getBlockY() : cornerA.getBlockY() + random.nextInt(cornerB.getBlockY() - cornerA.getBlockY() + 1),
+            cornerA.getBlockZ() == cornerB.getBlockZ() ? cornerA.getBlockZ() : cornerA.getBlockZ() + random.nextInt(cornerB.getBlockZ() - cornerA.getBlockZ() + 1)
+        );
+
+        if (bityard.getServer().getWorld("world").getBlockAt(signLoc).getType() == Material.WALL_SIGN)
         {
-            sign = (Sign)bityard.getServer().getWorld("world").getBlockAt(543, 56, 837).getState();
+            sign = (Sign)bityard.getServer().getWorld("world").getBlockAt(signLoc).getState();
         }
         if (sign != null)
         {

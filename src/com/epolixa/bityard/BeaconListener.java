@@ -92,7 +92,7 @@ public class BeaconListener implements Listener
                 }
             }
         }
-        catch (Exception e) {bityard.sendLog(e.toString());}
+        catch (Exception e) {bityard.log(e.toString());}
     }
 
 

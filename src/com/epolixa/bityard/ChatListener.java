@@ -28,6 +28,6 @@ public class ChatListener implements Listener
         }
     }
 
-    // color discord names too
+    // color discord names too?
 
 }

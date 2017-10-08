@@ -105,7 +105,7 @@ public class InventoryListener implements Listener
         }
         catch (Exception e)
         {
-            bityard.sendLog(e.toString());
+            bityard.log(e.toString());
         }
     }
 
